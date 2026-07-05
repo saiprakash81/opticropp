@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block title %}OptiCrop – Dashboard{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Dataset Dashboard</h1>
+  <p>Exploratory data analysis and visual insights from the Crop Recommendation dataset.</p>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-box">
+    <span class="sb-num">{{ total_records }}</span>
+    <span class="sb-label">Total Records</span>
+  </div>
+  <div class="stat-box">
+    <span class="sb-num">{{ num_crops }}</span>
+    <span class="sb-label">Crop Classes</span>
+  </div>
+  <div class="stat-box">
+    <span class="sb-num">7</span>
+    <span class="sb-label">Input Features</span>
+  </div>
+  <div class="stat-box">
+    <span class="sb-num">5</span>
+    <span class="sb-label">ML Models</span>
+  </div>
+</div>
+
+<section class="dash-section">
+  <h2>Feature Statistics</h2>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Mean</th>
+          <th>Std Dev</th>
+          <th>Min</th>
+          <th>Max</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for feat in features %}
+        <tr>
+          <td><strong>{{ feat.capitalize() }}</strong></td>
+          <td>{{ feature_stats[feat].mean }}</td>
+          <td>{{ feature_stats[feat].std }}</td>
+          <td>{{ feature_stats[feat].min }}</td>
+          <td>{{ feature_stats[feat].max }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="dash-section">
+  <h2>Crop Classes</h2>
+  <div class="crop-tags">
+    {% for crop in crop_list %}
+    <span class="crop-tag">{{ crop.capitalize() }}</span>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="dash-section">
+  <h2>Correlation Heatmap</h2>
+  <div class="plot-wrap">
+    <img src="{{ url_for('static', filename='plots/correlation_heatmap.png') }}" alt="Correlation Heatmap" class="dash-plot" />
+  </div>
+</section>
+
+<section class="dash-section">
+  <h2>Crop Distribution</h2>
+  <div class="plot-wrap">
+    <img src="{{ url_for('static', filename='plots/crop_distribution.png') }}" alt="Crop Distribution" class="dash-plot" />
+  </div>
+</section>
+
+<section class="dash-section">
+  <h2>Feature Distributions (Histograms)</h2>
+  <div class="plot-wrap">
+    <img src="{{ url_for('static', filename='plots/histograms.png') }}" alt="Feature Histograms" class="dash-plot" />
+  </div>
+</section>
+
+<section class="dash-section">
+  <h2>Temperature Distribution by Crop</h2>
+  <div class="plot-wrap">
+    <img src="{{ url_for('static', filename='plots/temperature_distribution.png') }}" alt="Temperature Distribution" class="dash-plot" />
+  </div>
+</section>
+
+<section class="dash-section">
+  <h2>Humidity Distribution by Crop</h2>
+  <div class="plot-wrap">
+    <img src="{{ url_for('static', filename='plots/humidity_distribution.png') }}" alt="Humidity Distribution" class="dash-plot" />
+  </div>
+</section>
+
+<section class="dash-section">
+  <h2>Rainfall Distribution by Crop</h2>
+  <div class="plot-wrap">
+    <img src="{{ url_for('static', filename='plots/rainfall_distribution.png') }}" alt="Rainfall Distribution" class="dash-plot" />
+  </div>
+</section>
+{% endblock %}

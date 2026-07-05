@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}OptiCrop – Result{% endblock %}
+
+{% block content %}
+<div class="result-page">
+  <div class="result-card">
+    <div class="result-badge">✅ Recommendation Ready</div>
+    <p class="result-label">The Recommended Crop is:</p>
+    <h1 class="result-crop">{{ crop }}</h1>
+    <p class="result-sub">Based on the soil nutrients and environmental conditions you provided.</p>
+  </div>
+
+  <div class="input-summary">
+    <h3>Your Input Parameters</h3>
+    <div class="summary-grid">
+      <div class="summary-item">
+        <span class="s-label">Nitrogen (N)</span>
+        <span class="s-value">{{ nitrogen }} <small>kg/ha</small></span>
+      </div>
+      <div class="summary-item">
+        <span class="s-label">Phosphorous (P)</span>
+        <span class="s-value">{{ phosphorous }} <small>kg/ha</small></span>
+      </div>
+      <div class="summary-item">
+        <span class="s-label">Potassium (K)</span>
+        <span class="s-value">{{ potassium }} <small>kg/ha</small></span>
+      </div>
+      <div class="summary-item">
+        <span class="s-label">Temperature</span>
+        <span class="s-value">{{ temperature }} <small>°C</small></span>
+      </div>
+      <div class="summary-item">
+        <span class="s-label">Humidity</span>
+        <span class="s-value">{{ humidity }} <small>%</small></span>
+      </div>
+      <div class="summary-item">
+        <span class="s-label">Soil pH</span>
+        <span class="s-value">{{ ph }}</span>
+      </div>
+      <div class="summary-item">
+        <span class="s-label">Rainfall</span>
+        <span class="s-value">{{ rainfall }} <small>mm/yr</small></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="result-actions">
+    <a href="{{ url_for('predict') }}" class="btn btn-primary">Try Another Prediction</a>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-outline">View Dashboard</a>
+    <a href="{{ url_for('performance') }}" class="btn btn-outline">Model Performance</a>
+  </div>
+</div>
+{% endblock %}

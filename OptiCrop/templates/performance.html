@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}OptiCrop – Model Performance{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Model Performance</h1>
+  <p>Accuracy metrics, confusion matrix, and classification report for all trained models.</p>
+</div>
+
+<section class="dash-section">
+  <h2>Model Accuracy Comparison</h2>
+  <div class="accuracy-grid">
+    {% for model_name, result in all_results.items() %}
+    <div class="acc-card {% if model_name == best_name %}acc-best{% endif %}">
+      {% if model_name == best_name %}
+      <div class="best-ribbon">Best Model</div>
+      {% endif %}
+      <div class="acc-name">{{ model_name }}</div>
+      <div class="acc-value">{{ result.accuracy }}%</div>
+      <div class="acc-bar-wrap">
+        <div class="acc-bar" style="width: {{ result.accuracy }}%"></div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="dash-section">
+  <h2>Model Accuracy Chart</h2>
+  <div class="plot-wrap">
+    <img src="{{ url_for('static', filename='plots/model_comparison.png') }}" alt="Model Comparison" class="dash-plot" />
+  </div>
+</section>
+
+<section class="dash-section">
+  <h2>Confusion Matrix — <span class="text-green">{{ best_name }}</span></h2>
+  <div class="plot-wrap">
+    <img src="{{ url_for('static', filename='plots/confusion_matrix.png') }}" alt="Confusion Matrix" class="dash-plot" />
+  </div>
+</section>
+
+<section class="dash-section">
+  <h2>Classification Report — {{ best_name }}</h2>
+  <div class="table-wrap">
+    <table class="data-table clf-table">
+      <thead>
+        <tr>
+          <th>Crop</th>
+          <th>Precision</th>
+          <th>Recall</th>
+          <th>F1-Score</th>
+          <th>Support</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for label, metrics in classification_report.items() %}
+        {% if label not in ['accuracy', 'macro avg', 'weighted avg'] %}
+        <tr>
+          <td><strong>{{ label.capitalize() }}</strong></td>
+          <td>{{ "%.2f"|format(metrics.precision) }}</td>
+          <td>{{ "%.2f"|format(metrics.recall) }}</td>
+          <td>{{ "%.2f"|format(metrics['f1-score']) }}</td>
+          <td>{{ metrics.support|int }}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </tbody>
+      <tfoot>
+        {% for label in ['macro avg', 'weighted avg'] %}
+        {% if label in classification_report %}
+        <tr class="avg-row">
+          <td><strong>{{ label.title() }}</strong></td>
+          <td>{{ "%.2f"|format(classification_report[label].precision) }}</td>
+          <td>{{ "%.2f"|format(classification_report[label].recall) }}</td>
+          <td>{{ "%.2f"|format(classification_report[label]['f1-score']) }}</td>
+          <td>{{ classification_report[label].support|int }}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </tfoot>
+    </table>
+  </div>
+</section>
+{% endblock %}

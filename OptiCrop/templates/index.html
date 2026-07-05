@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}OptiCrop – Home{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="hero-content">
+    <h1>Smart Agricultural<br>Production Optimization</h1>
+    <p class="hero-sub">
+      Harness machine learning to determine the most suitable crop for any soil
+      and climate profile — empowering farmers, researchers, and policymakers
+      with data-driven decisions.
+    </p>
+    <div class="hero-actions">
+      <a href="{{ url_for('predict') }}" class="btn btn-primary">Get Crop Recommendation</a>
+      <a href="{{ url_for('dashboard') }}" class="btn btn-outline">View Dashboard</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="stat-ring">
+      <div class="stat-item"><span class="stat-num">22</span><span class="stat-label">Crops</span></div>
+      <div class="stat-item"><span class="stat-num">5</span><span class="stat-label">ML Models</span></div>
+      <div class="stat-item"><span class="stat-num">7</span><span class="stat-label">Features</span></div>
+      <div class="stat-item"><span class="stat-num">2200</span><span class="stat-label">Records</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="features-section">
+  <h2 class="section-title">What OptiCrop Does</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🧪</div>
+      <h3>Soil Analysis</h3>
+      <p>Analyse Nitrogen, Phosphorous, and Potassium levels alongside pH to match soil conditions to the ideal crop.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🌡️</div>
+      <h3>Climate Matching</h3>
+      <p>Factor in temperature, humidity, and rainfall to ensure environmental compatibility for maximum yield.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🤖</div>
+      <h3>ML Prediction</h3>
+      <p>Five trained classifiers — Decision Tree, Random Forest, KNN, SVM, and Logistic Regression — vote on the best crop.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3>Visual Insights</h3>
+      <p>Interactive charts, correlation heatmaps, and distribution plots reveal hidden patterns in agricultural data.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📈</div>
+      <h3>Model Benchmarking</h3>
+      <p>Compare every model's accuracy, view the confusion matrix, and inspect the full classification report.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🌍</div>
+      <h3>Policy Support</h3>
+      <p>Enable researchers and policymakers to explore crop-environment relationships through aggregated data views.</p>
+    </div>
+  </div>
+</section>
+
+<section class="how-section">
+  <h2 class="section-title">How It Works</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h4>Enter Soil &amp; Climate Parameters</h4>
+        <p>Provide N, P, K, temperature, humidity, pH, and rainfall values.</p>
+      </div>
+    </div>
+    <div class="step-arrow">→</div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h4>ML Engine Processes</h4>
+        <p>The best-performing model processes and classifies your inputs instantly.</p>
+      </div>
+    </div>
+    <div class="step-arrow">→</div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h4>Receive Recommendation</h4>
+        <p>Get a clear, actionable crop recommendation optimised for your conditions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

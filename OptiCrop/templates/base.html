@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}OptiCrop{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+
+<nav class="navbar">
+  <a class="brand" href="{{ url_for('index') }}">
+    <span class="brand-icon">🌾</span> OptiCrop
+  </a>
+  <ul class="nav-links">
+    <li><a href="{{ url_for('index') }}" class="{% if request.endpoint == 'index' %}active{% endif %}">Home</a></li>
+    <li><a href="{{ url_for('about') }}" class="{% if request.endpoint == 'about' %}active{% endif %}">About</a></li>
+    <li><a href="{{ url_for('predict') }}" class="{% if request.endpoint == 'predict' %}active{% endif %}">Predict</a></li>
+    <li><a href="{{ url_for('dashboard') }}" class="{% if request.endpoint == 'dashboard' %}active{% endif %}">Dashboard</a></li>
+    <li><a href="{{ url_for('performance') }}" class="{% if request.endpoint == 'performance' %}active{% endif %}">Performance</a></li>
+  </ul>
+</nav>
+
+<main class="page-content">
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="footer">
+  <p>© 2024 OptiCrop · Smart Agricultural Production Optimization Engine</p>
+</footer>
+
+</body>
+</html>

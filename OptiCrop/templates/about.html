@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}OptiCrop – About{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>About OptiCrop</h1>
+  <p>Smart Agricultural Production Optimization Engine</p>
+</div>
+
+<div class="about-grid">
+  <div class="about-card wide">
+    <h2>Project Description</h2>
+    <p>
+      OptiCrop is an intelligent crop recommendation system built to bridge the gap between
+      agricultural knowledge and data science. By analysing seven key soil and environmental
+      parameters, it predicts the crop that will thrive most under those specific conditions.
+    </p>
+    <p>
+      The engine is powered by five machine learning classifiers trained on a comprehensive
+      dataset spanning 22 distinct crop types. Each model is evaluated and the best-performing
+      one is selected automatically to power the live prediction interface.
+    </p>
+  </div>
+
+  <div class="about-card">
+    <h2>Objectives</h2>
+    <ul class="obj-list">
+      <li>Help farmers make precise, data-driven crop choices</li>
+      <li>Reduce crop failure due to unsuitable growing conditions</li>
+      <li>Provide researchers with EDA tools for crop-environment analysis</li>
+      <li>Support policymakers with aggregated insights and model metrics</li>
+      <li>Demonstrate the power of ML in sustainable agriculture</li>
+    </ul>
+  </div>
+
+  <div class="about-card">
+    <h2>Input Features</h2>
+    <table class="feature-table">
+      <thead><tr><th>Feature</th><th>Description</th><th>Unit</th></tr></thead>
+      <tbody>
+        <tr><td>N</td><td>Nitrogen content</td><td>kg/ha</td></tr>
+        <tr><td>P</td><td>Phosphorous content</td><td>kg/ha</td></tr>
+        <tr><td>K</td><td>Potassium content</td><td>kg/ha</td></tr>
+        <tr><td>Temperature</td><td>Air temperature</td><td>°C</td></tr>
+        <tr><td>Humidity</td><td>Relative humidity</td><td>%</td></tr>
+        <tr><td>pH</td><td>Soil pH level</td><td>–</td></tr>
+        <tr><td>Rainfall</td><td>Annual rainfall</td><td>mm</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="about-card">
+    <h2>ML Models Used</h2>
+    <div class="model-badges">
+      <span class="badge badge-green">Decision Tree</span>
+      <span class="badge badge-blue">Random Forest</span>
+      <span class="badge badge-purple">K-Nearest Neighbors</span>
+      <span class="badge badge-orange">Support Vector Machine</span>
+      <span class="badge badge-red">Logistic Regression</span>
+    </div>
+  </div>
+
+  <div class="about-card wide">
+    <h2>Technologies Used</h2>
+    <div class="tech-grid">
+      <div class="tech-item"><span class="tech-icon">🐍</span><strong>Python 3.11</strong><br>Core language</div>
+      <div class="tech-item"><span class="tech-icon">🌐</span><strong>Flask</strong><br>Web framework</div>
+      <div class="tech-item"><span class="tech-icon">🔢</span><strong>NumPy</strong><br>Numerical ops</div>
+      <div class="tech-item"><span class="tech-icon">🐼</span><strong>Pandas</strong><br>Data handling</div>
+      <div class="tech-item"><span class="tech-icon">🤖</span><strong>Scikit-learn</strong><br>ML models</div>
+      <div class="tech-item"><span class="tech-icon">📊</span><strong>Matplotlib</strong><br>Plotting</div>
+      <div class="tech-item"><span class="tech-icon">🎨</span><strong>Seaborn</strong><br>Statistical plots</div>
+      <div class="tech-item"><span class="tech-icon">📐</span><strong>SciPy</strong><br>Statistical analysis</div>
+    </div>
+  </div>
+</div>
+{% endblock %}

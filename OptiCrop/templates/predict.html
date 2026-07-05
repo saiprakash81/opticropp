@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}OptiCrop – Predict{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Crop Prediction</h1>
+  <p>Enter soil nutrient levels and environmental conditions to receive your recommendation.</p>
+</div>
+
+{% if error %}
+<div class="alert alert-error">{{ error }}</div>
+{% endif %}
+
+<div class="predict-layout">
+  <form class="predict-form" method="POST" action="{{ url_for('predict') }}" id="predictForm">
+
+    <div class="form-section">
+      <h3 class="form-section-title">🧪 Soil Nutrients</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nitrogen">Nitrogen (N) <span class="unit">kg/ha</span></label>
+          <input type="number" id="nitrogen" name="nitrogen" step="0.01" min="0" max="300"
+                 placeholder="e.g. 90" required value="{{ request.form.nitrogen or '' }}" />
+          <span class="hint">Typical range: 0 – 140</span>
+        </div>
+        <div class="form-group">
+          <label for="phosphorous">Phosphorous (P) <span class="unit">kg/ha</span></label>
+          <input type="number" id="phosphorous" name="phosphorous" step="0.01" min="0" max="300"
+                 placeholder="e.g. 42" required value="{{ request.form.phosphorous or '' }}" />
+          <span class="hint">Typical range: 5 – 145</span>
+        </div>
+        <div class="form-group">
+          <label for="potassium">Potassium (K) <span class="unit">kg/ha</span></label>
+          <input type="number" id="potassium" name="potassium" step="0.01" min="0" max="300"
+                 placeholder="e.g. 43" required value="{{ request.form.potassium or '' }}" />
+          <span class="hint">Typical range: 5 – 215</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3 class="form-section-title">🌡️ Environmental Conditions</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="temperature">Temperature <span class="unit">°C</span></label>
+          <input type="number" id="temperature" name="temperature" step="0.01" min="-10" max="60"
+                 placeholder="e.g. 25.5" required value="{{ request.form.temperature or '' }}" />
+          <span class="hint">Typical range: 8 – 43</span>
+        </div>
+        <div class="form-group">
+          <label for="humidity">Humidity <span class="unit">%</span></label>
+          <input type="number" id="humidity" name="humidity" step="0.01" min="0" max="100"
+                 placeholder="e.g. 80" required value="{{ request.form.humidity or '' }}" />
+          <span class="hint">Typical range: 14 – 100</span>
+        </div>
+        <div class="form-group">
+          <label for="ph">Soil pH <span class="unit">–</span></label>
+          <input type="number" id="ph" name="ph" step="0.01" min="0" max="14"
+                 placeholder="e.g. 6.5" required value="{{ request.form.ph or '' }}" />
+          <span class="hint">Typical range: 3.5 – 9.5</span>
+        </div>
+        <div class="form-group">
+          <label for="rainfall">Rainfall <span class="unit">mm/yr</span></label>
+          <input type="number" id="rainfall" name="rainfall" step="0.01" min="0" max="500"
+                 placeholder="e.g. 200" required value="{{ request.form.rainfall or '' }}" />
+          <span class="hint">Typical range: 20 – 300</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary btn-lg">🔍 Predict Crop</button>
+      <button type="reset" class="btn btn-outline btn-lg" onclick="document.getElementById('predictForm').reset()">↺ Reset</button>
+    </div>
+  </form>
+
+  <aside class="predict-tips">
+    <h3>Quick Reference</h3>
+    <div class="tip-table">
+      <div class="tip-row header">
+        <span>Crop</span><span>N</span><span>P</span><span>Temp</span>
+      </div>
+      <div class="tip-row"><span>Rice</span><span>80</span><span>50</span><span>23°C</span></div>
+      <div class="tip-row"><span>Maize</span><span>70</span><span>58</span><span>22°C</span></div>
+      <div class="tip-row"><span>Cotton</span><span>120</span><span>48</span><span>25°C</span></div>
+      <div class="tip-row"><span>Coffee</span><span>101</span><span>30</span><span>26°C</span></div>
+      <div class="tip-row"><span>Banana</span><span>110</span><span>78</span><span>27°C</span></div>
+    </div>
+    <p class="tip-note">These are approximate midpoint values from our training dataset.</p>
+  </aside>
+</div>
+{% endblock %}
